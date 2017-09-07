@@ -114,10 +114,9 @@ fi
 for valueParameter in "${myValueParameterVariable[@]}"; do
     # So right now valueParameter is a key=value pair - value may be 1 or multiple space-delimited values
     declare pName="${valueParameter%=*}"
-    echo ${valueParameter#*=}
-    declare -a pValues=("${valueParameter#*=}")
+    declare -a pValues=(${valueParameter#*=})
     echo "    You entered the value parameter ${pName} with the following values:"
-    for eachValue in "${pValues[@]}"; do
+    for eachValue in ${pValues[@]}; do
         echo "        ${eachValue}"
     done
 done
