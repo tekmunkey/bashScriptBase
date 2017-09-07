@@ -9,26 +9,25 @@
 trap "exit 1" TERM
 export HELP_PID=$$ # use 'kill -s TERM $HELP_PID' to pop this from anywhere in the script
 
-declare thisScript="${BASH_SOURCE[0]##*/}"
-declare thisScriptDir="$( cd "${BASH_SOURCE[0]%/*}" && pwd )"
-declare thisFQP="${thisScriptDir}/${thisScript}"
+# include but don't overinclude the directoryIndex.sh
+if [ ! ${scriptDirectory} ]; then
+    source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/scriptDirectory.sh"
+fi
 
 # include but don't overinclude the stringExtends.sh
 if [ ! ${stringExtends} ]; then
-    source "${thisScriptDir}"/devUtils/stringExtends.sh
+    source "$(thisScriptDir)/devUtils/stringExtends.sh"
 fi
 
 # include but don't overinclude the adaptiveDisplay.sh
 if [ ! ${adaptiveDisplay} ]; then
-    source "${thisScriptDir}"/devUtils/adaptiveDisplay.sh
+    source "$(thisScriptDir)/devUtils/adaptiveDisplay.sh"
 fi
 
 # include but don't overinclude the scriptCLI.sh
 if [ ! ${scriptCLI} ]; then
-    source "${thisScriptDir}"/scriptCLI.sh
+    source "$(thisScriptDir)/scriptCLI.sh"
 fi
-
-
 
 #
 # A value telling consumers that scriptHelp is included, so we don't over-include the script

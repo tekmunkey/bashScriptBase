@@ -14,15 +14,7 @@ export CLI_PID=$$ # use 'kill -s TERM $CLI_PID' to pop this from anywhere in the
 #
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     # script is being executed, not sourced - exit with error code
-    if [ ! ${scriptHelp} ]; then
-        # scriptHelp is not defined, so dump a plainjane error message
-        echo "${0##*/} is intended to be included via source, not executed via command line."
-    else
-        # scriptHelp is defined, so call printHelp
-        introHelpEntries+=("${ansi_foreRed}*****${ansi_resetAll}")
-        introHelpEntries+=("${ansi_setBold}* ${ansi_setBold}${0##*/} is intended to be included via source, not executed via command line. *${ansi_resetAll}")
-        introHelpEntries+=("${ansi_foreRed}*****${ansi_resetAll}")
-    fi
+    echo "    ${0##*/} is intended to be included via source, not executed via command line."
     exit 1
 fi
 
@@ -34,9 +26,10 @@ shopt -s extglob
 #
 declare -i scriptCLI=1
 
-declare thisScript="${BASH_SOURCE[0]##*/}"
-declare thisScriptDir="$( cd "${BASH_SOURCE[0]%/*}" && pwd )"
-declare thisFQP="${thisScriptDir}/${thisScript}"
+# include but don't overinclude the directoryIndex.sh
+if [ ! ${directoryIndex} ]; then
+    source "$( cd "${BASH_SOURCE[0]%/*}" && pwd )/scriptDirectory.sh"
+fi
 
 #
 # cliParameters is a mutable value to contain the CLI parameters that the user passes in from the command line
@@ -168,3 +161,4 @@ function processCLIParameters
         "${cliFinishedHandlers[${i}]}"
     done
 }
+
