@@ -160,6 +160,6 @@ done
 #   ... this is because we're fully processing all the CLI parameters before any execution is performed
 # ./goodExample.sh --switchParameter --valueParameter
 #
-# Hopefully this is enough test cases to demonstrate how and why this is the right way to order events in 
-# a script
+# Hopefully this is enough test cases to demonstrate how and why this is a good example of a script written 
+# using this little framework.
 #
