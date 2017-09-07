@@ -93,9 +93,6 @@ function unrecognizedCLIParameterFunction
 # * When a cliUnrecognizedParameterHandler function is called, the unrecognized parameter=value is passed to it just like it is to 
 #   a defined cliHandler
 #
-# To remove the original/default entry, simply shift it off before adding your own handler(s):
-#     shift cliUnrecognizedParameterHandlers
-#
 declare -a cliUnrecognizedParameterHandlers
 cliUnrecognizedParameterHandlers+=("unrecognizedCLIParameterFunction")
 

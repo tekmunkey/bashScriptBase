@@ -50,7 +50,7 @@ declare -i scriptHelp=1
 #
 declare -a headerHelpEntries
 headerHelpEntries+=("${ansi_setBold}Help documentation for:${ansi_resetAll} ${ansi_setBold}${0##*/}${ansi_resetAll}")
-headerHelpEntries+=("")
+
 #
 ## The next line is commented because it isn't necessarily true unless you code that way.  It certainly should be.
 ## * If you code execution function calls directly out from CLI Parameter processing, then it is not.
@@ -59,6 +59,7 @@ headerHelpEntries+=("")
 ##   So you can set this line into your own scripts if it is true.  Otherwise, kindly leave it out!
 #
 # headerHelpEntries+=("${ansi_setBold}* The order in which parameters are sent into this script is not important. *${ansi_resetAll}")
+# headerHelpEntries+=("")
 #
 
 #
@@ -96,7 +97,7 @@ declare -a footerHelpEntries
 # command line (CLI) parameters when you include scriptHelp.sh into your script, and each entry here will be ignored if/when 
 # it is passed into printHelp as an argument.
 #
-declare helpCommands="-h|-hlp|--help|-?|--?|/?"
+declare helpCommands="-h|-hlp|--help"
 
 #
 # prints the help documentation for this script
@@ -160,10 +161,11 @@ function printHelp
 # add printHelp to scriptCLI
 footerHelpEntries+=("")
 #footerHelpEntries+=("${ansi_setBold}$(centerHorz 'Script Framework Help Entries')${ansi_resetAll}")
-footerHelpEntries+=("    ${ansi_setBold}-h|-hlp|--help|-?|--?|*${ansi_resetAll}")
+footerHelpEntries+=("    ${ansi_setBold}-h|-hlp|--help|-?|--?|${ansi_resetAll}")
 footerHelpEntries+=("        Prints this help screen.")
 
 cliHandlers+=("${helpCommands} printHelp")
+
 
 #
 # scriptHelp can/should die as soon as its help entries are set up
