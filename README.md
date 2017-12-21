@@ -14,6 +14,6 @@ The documentation on this product is best viewed inside the scripts themselves. 
 
 0x02:  scriptHelp (help system)
 
-So the only script you actually need to include is scriptHelp.
+So the only script you actually need to include, and then you're including them all by proxy, is scriptHelp.
 
 At some point I may have time to go in and document each function from each file individually, but unfortunately that time has not been up to (and still is not) now.
