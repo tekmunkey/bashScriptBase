@@ -9,7 +9,9 @@ https://www.patreon.com/tekmunkey
 The documentation on this product is best viewed inside the scripts themselves.  Order of includes is:
 
 0x00:  scriptDirectory (contains directory resolutions)
+
 0x01:  scriptCLI (Command Line Interpreter)
+
 0x02:  scriptHelp (help system)
 
 So the only script you actually need to include is scriptHelp.
